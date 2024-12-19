@@ -21,10 +21,16 @@ func getAlbums(c *gin.Context) {
 	}
 
 	t := time.Now().YearDay()
-	randomEntry := entries[t%len(entries)]
-
+	fmt.Println(t)
+	i := (t) % len(entries)
+	fmt.Println(i)
+	randomEntry := entries[i]
+	fmt.Println(randomEntry.Name())
 	resFile := filepath.Join("images", randomEntry.Name())
 
+	c.Header("Cache-Control", "no-cache, no-store, must-revalidate")
+	c.Header("Pragma", "no-cache")
+	c.Header("Expires", "0")
 	c.File(resFile)
 }
 func main() {
