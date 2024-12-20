@@ -37,5 +37,5 @@ func main() {
 	router := gin.Default()
 	router.GET("/random-animal", getAlbums)
 
-	router.Run("localhost:8080")
+	router.Run(":8080")
 }
